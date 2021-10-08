@@ -1,4 +1,4 @@
-package com.jsfcourse.kredyt;
+package com.jsfcourse.calc;
 
 import javax.inject.Inject;
 import javax.inject.Named;

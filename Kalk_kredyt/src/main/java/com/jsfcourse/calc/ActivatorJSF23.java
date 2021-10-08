@@ -1,4 +1,4 @@
-package com.jsfcourse.kredyt;
+package com.jsfcourse.calc;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.annotation.FacesConfig;
