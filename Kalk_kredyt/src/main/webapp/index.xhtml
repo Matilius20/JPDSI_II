@@ -3,26 +3,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Kredyt</title>
 </h:head>
 <h:body>
+<p:panel header="Kredyt" toggleable="true"  toggleSpeed="500"  widgetVar="panel">	
 
-	<h1>Kredyt</h1>
 
 	<h:form id="bla">
-  		Kwota: <h:inputText value="#{kredytBB.loan}" />
-		<br />
-  		Lata: <h:inputText value="#{kredytBB.years}" />
-		<br />
-		Oprocentowanie: <h:inputText value="#{kredytBB.interest}" />
-		<h:messages id="msg" />
-		<h:commandButton value="Oblicz ratę kredytu" action="#{kredytBB.calc()}"/>
-		<br />
-	    Rata: #{kredytBB.rate}
-		<br />
+	<h:panelGrid id="grid" columns="3" cellpadding="7">
+	
+      <p:outputLabel for="loan" value="Kwota:" />
+      <p:inputNumber id="loan" value="#{kredytBB.loan}" symbol="zł"
+      symbolPosition="s" decimalSeparator="," thousandSeparator="." required="true" requiredMessage="Nie podano kwoty kredytu" />
+      <p:message for="loan" />
+					
+  		<p:outputLabel for="years" value="Lata:"/>	
+  		 <p:inputText id="years" value="#{kredytBB.years}" required="true" requiredMessage="Nie podano ilości lat" />
+  		<p:message for="loan" />
+  		 
+  		 <p:outputLabel for="interest" value="Oprocentowanie:"/>	
+ 		 <p:inputNumber id="interest" value="#{kredytBB.interest}" symbol="%" symbolPosition="s" required="true" requiredMessage="Nie podano oprocentowania" />
+ 		 <p:message for="interest"/>
+ 		
+		<p:commandButton value="Oblicz ratę kredytu" action="#{kredytBB.rate()}" update="@form"/>
+	    </h:panelGrid>
+	    
 	</h:form>
-
+</p:panel>
 </h:body>
 </html>

@@ -51,17 +51,35 @@ public class KredytBB {
 		this.rate = rate;
 	}
 
-	public String calc() {
-		
+	public boolean calc() {
+		try {
 			double loan = Double.parseDouble(this.loan);
 			double years = Double.parseDouble(this.years);
 			double interest = Double.parseDouble(this.interest);
-
+			
 			rate = loan / (years * 12) * (1.0 + interest / 100);
-			return null;
+			
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rata obliczona pomyœlnie", null));
+			return true;
+		} catch (Exception e) {
+			ctx.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d", null));
+			return false;
+		}
+		}
+	
+	public String rate() {
+		if (calc()) {
+			return "showresult";
+		}
+		return null;
+	}
+		
+
+		
 	}
 	
-}
+
 
 
 
