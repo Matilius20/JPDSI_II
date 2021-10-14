@@ -11,35 +11,36 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class KredytBB {
-	private String loan;
-	private String years;
-	private String interest;
+	private Double loan;
+	private Double years;
+	private Double interest;
 	private Double rate;
 
 	@Inject
 	FacesContext ctx;
 
-	public String getLoan() {
+
+	public Double getLoan() {
 		return loan;
 	}
 
-	public void setLoan(String loan) {
+	public void setLoan(Double loan) {
 		this.loan = loan;
 	}
 
-	public String getYears() {
+	public Double getYears() {
 		return years;
 	}
 
-	public void setYears(String years) {
+	public void setYears(Double years) {
 		this.years = years;
 	}
-	
-	public String getInterest() {
+
+	public Double getInterest() {
 		return interest;
 	}
 
-	public void setInterest(String interest) {
+	public void setInterest(Double interest) {
 		this.interest = interest;
 	}
 
@@ -52,11 +53,7 @@ public class KredytBB {
 	}
 
 	public boolean calc() {
-		try {
-			double loan = Double.parseDouble(this.loan);
-			double years = Double.parseDouble(this.years);
-			double interest = Double.parseDouble(this.interest);
-			
+		try {			
 			rate = loan / (years * 12) * (1.0 + interest / 100);
 			
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rata obliczona pomyœlnie", null));

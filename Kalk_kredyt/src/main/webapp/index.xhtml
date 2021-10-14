@@ -17,15 +17,25 @@
 	
       <p:outputLabel for="loan" value="Kwota:" />
       <p:inputNumber id="loan" value="#{kredytBB.loan}" symbol="zł"
-      symbolPosition="s" decimalSeparator="," thousandSeparator="." required="true" requiredMessage="Nie podano kwoty kredytu" />
+      symbolPosition="s" decimalSeparator="," thousandSeparator="." required="true" requiredMessage="Nie podano kwoty kredytu" 
+      validatorMessage="Minimalna kwota kredytu wynosi 5000 zł"  >
+      <f:validateDoubleRange minimum="5000.00"/> 
+      </p:inputNumber>
       <p:message for="loan" />
 					
   		<p:outputLabel for="years" value="Lata:"/>	
-  		 <p:inputText id="years" value="#{kredytBB.years}" required="true" requiredMessage="Nie podano ilości lat" />
-  		<p:message for="loan" />
+  		 <p:inputText id="years" value="#{kredytBB.years}" required="true" requiredMessage="Nie podano ilości lat"
+  		 converterMessage="Ilość lat musi być liczbą." 
+  		 validatorMessage="Minimalna długość spłaty kredytu to 3 lata. Proszę wpisać poprawną wartość.">
+  		 <f:validateDoubleRange minimum="3"/> 
+  		 </p:inputText>
+  		<p:message for="years" />
   		 
   		 <p:outputLabel for="interest" value="Oprocentowanie:"/>	
- 		 <p:inputNumber id="interest" value="#{kredytBB.interest}" symbol="%" symbolPosition="s" required="true" requiredMessage="Nie podano oprocentowania" />
+ 		 <p:inputNumber id="interest" value="#{kredytBB.interest}" symbol="%" symbolPosition="s" required="true" requiredMessage="Nie podano oprocentowania" 
+ 		 validatorMessage="Minimalne oprocentowanie kredytu wynosi 5%"  >
+         <f:validateDoubleRange minimum="5"/> 
+ 		 </p:inputNumber>
  		 <p:message for="interest"/>
  		
 		<p:commandButton value="Oblicz ratę kredytu" action="#{kredytBB.rate()}" update="@form"/>
